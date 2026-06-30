@@ -7,6 +7,7 @@ def button_pressed(number):
     global winner
     global c_score
     global p_score
+    global rps
     computer_choice=random.randint(1,3)
     if number==1:
       if computer_choice==1:
@@ -32,6 +33,7 @@ def button_pressed(number):
       if computer_choice==3:
         winner="lost"
 
+
     if winner=="won":
       p_score=p_score+1
     if winner=="lost":
@@ -39,6 +41,13 @@ def button_pressed(number):
     computer_score.config(text="Computer Score= "+str(c_score))
     player_score.config(text="Player Score= "+str(+p_score))
     conclusion.config(text="You "+winner)
+
+    if computer_choice==1:
+      rps.config(text=("The computer picked rock"))
+    if computer_choice==2:
+      rps.config(text="The computer picked papper")
+    if computer_choice==3:
+      rps.config(text="The computer picked scisors")
     
 
 
@@ -69,4 +78,6 @@ computer_score=Label(window,text="Computer Score= "+str(c_score),font=("Ariel",1
 computer_score.place(x=40,y=340)
 conclusion=Label(window,text="You "+winner,font=("Ariel",15))
 conclusion.place(x=300,y=370)
+rps=Label(window,text="")
+rps.place(x=200,y=100)
 window.mainloop()
