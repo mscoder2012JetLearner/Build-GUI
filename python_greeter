@@ -1,0 +1,12 @@
+from tkinter import*
+from tkinter import messagebox
+
+window=Tk()
+
+def message():
+  messagebox.showinfo("information","welcome to python tkinter")
+
+b=Button(window,text="click for a message",command=message)
+b.place(x=0,y=0)
+
+window.mainloop()
