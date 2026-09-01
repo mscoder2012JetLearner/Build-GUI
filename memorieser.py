@@ -13,7 +13,7 @@ s.config(command=l.yview)
 s.pack(side="left",fill=Y)
 l.pack(side="right")
 
-for i in range(100):
+for i in range(20):
     l.insert(END, "List "+str(i))
 
 
@@ -29,11 +29,26 @@ def addv():
     l.insert(END,eg)
     e.delete(0,END)
 
+def deletei():
+    item=l.curselection()
+    l.delete(item)
 
-open=Button(window,text="open")
+def openf():
+    of=askopenfile(title="open")
+    l.delete(0,END)
+    rl=of.readlines()
+    for i in rl:
+        l.insert(END,i)
+
+
+
+
+
+
+open=Button(window,text="open",command=openf)
 open.place(x=250,y=50)
 
-delete=Button(window,text="Delete")
+delete=Button(window,text="Delete",command=deletei)
 delete.place(x=350,y=50)
 
 save=Button(window,text="save",command=savef)
