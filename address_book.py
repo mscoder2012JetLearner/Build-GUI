@@ -1,6 +1,7 @@
 from tkinter import*
 from tkinter.filedialog import*
 
+d={}
 window=Tk()
 window.title=("address book")
 window.geometry("600x600")
@@ -13,10 +14,47 @@ s.config(command=l.yview)
 s.pack(side="left",fill=Y)
 l.pack(side="right")
 
-edit=Button(window,text="Edit")
+def wipe():
+    openn.delete(0,END)
+    opena.delete(0,END)
+    openm.delete(0,END)
+    openem.delete(0,END)
+    openb.delete(0,END)
+
+def u():
+    n=openn.get()
+    v=(opena.get(),openm.get(),openem.get(),openb.get())
+    d[n]=v
+    l.insert(END,n)
+    print(d)
+    wipe()
+
+def delete_dictionary():
+    item=l.curselection()
+    na=l.get(item)
+    del d[na]
+    l.delete(item)
+    print(d)
+
+def com():
+    item=l.curselection()
+    na=l.get(item)
+    gv=d[na]
+    openn.insert(0,na)
+    opena.insert(0,gv[0])
+    openm.insert(0,gv[1])
+    openem.insert(0,gv[2])
+    openb.insert(0,gv[3])
+
+
+
+
+
+
+edit=Button(window,text="Edit",command=com)
 edit.place(x=100,y=450)
 
-delete=Button(window,text="Delete")
+delete=Button(window,text="Delete",command=delete_dictionary)
 delete.place(x=170,y=450)
 
 save=Button(window,text="Save",width=15)
@@ -58,7 +96,7 @@ openb=Entry(window)
 openb.place(x=400,y=450)
 
 
-ua=Button(window,text="Update/Add")
+ua=Button(window,text="Update/Add",command=u)
 ua.place(x=400,y=520)
 
 
