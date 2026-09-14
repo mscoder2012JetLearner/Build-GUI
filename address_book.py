@@ -46,6 +46,26 @@ def com():
     openem.insert(0,gv[2])
     openb.insert(0,gv[3])
 
+def savef():
+    fn=asksaveasfile(defaultextension=".txt")
+    print(d,file=fn)
+    d.clear()
+    wipe()
+    l.delete(0,END)
+    print(d)
+
+def openf():
+    global d
+    of=askopenfile(title="open")
+    l.delete(0,END)
+    wipe()
+    d.clear()
+    storedfile=of.read()
+    d=eval(storedfile)
+    for i in d:
+        l.insert(0,i)
+
+
 
 
 
@@ -57,13 +77,13 @@ edit.place(x=100,y=450)
 delete=Button(window,text="Delete",command=delete_dictionary)
 delete.place(x=170,y=450)
 
-save=Button(window,text="Save",width=15)
+save=Button(window,text="Save",width=15,command=savef)
 save.place(x=80,y=520)
 
 title=Label(window,text="My address book")
 title.place(x=10,y=10)
 
-open=Button(window,text="Open")
+open=Button(window,text="Open",command=openf)
 open.place(x=250,y=10)
 
 name=Label(window,text="Name:")
